@@ -12,11 +12,9 @@ def main(page : ft.page):
                 socket.setdefaulttimeout(1)
                 result = s.connect_ex((host , port))
                 if result == 0:
-                    opp.value =+1
                     list_view.controls.append(ft.Text(value=f"[+] TCP is open {host}:{port}" , color=ft.colors.GREEN_300))
                     page.update()
                 else:
-                    opc.value=+1
                     list_view.controls.append(ft.Text(value=f"[-] TCP is close ! {host}:{port}" , color=ft.colors.RED_300))
                     s.close() 
         #--------------except--------------
@@ -35,14 +33,12 @@ def main(page : ft.page):
     list_view = ft.ListView(expand=True  , padding=13)
     urlbar = ft.TextField(hint_text="آدرس سایت خود را وارد کنید" , expand=False , width=680 , helper_text="example : 192.83.43.2 or google.com" , prefix_text="https://" , suffix_text="/")
     rangebar = ft.TextField(hint_text="رنج پورت را وارد کنید"  , width=320 , helper_text="example : 50 (range  1 to 1000)")
-    opp = ft.Text(value=0)
-    opc = ft.Text(value= 0)
     button_s = ft.ElevatedButton(text="start" , on_click=Port_Scanner , width=100 , height=99)
     #--------------Add To Page--------------
     page.add(
         ft.Row(
             [
-                urlbar , rangebar , ft.Column([opp , opc])
+                urlbar , rangebar 
             ]
         ) , list_view
         )
